@@ -1,0 +1,1179 @@
+//package com.example.demo2;
+
+//import jdk.jshell.spi.SPIResolutionException;
+//2212069 sumit
+// Har_Har_Mahadev ;
+
+import java.net.NetworkInterface;
+import java.util.*;
+import java.lang.*;
+import java.util.HashMap;
+import java.lang.Long;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.*;
+import java.util.StringTokenizer;
+//import jdk.jshell.spi.SPIResolutionException;
+import static java.lang.Math.*;
+
+/*****************************************************************************************************************/
+/*
+                                        $,  $,     ,
+                                        "ss.$ss. .s'
+                                ,     .ss$$$$$$$$$$s,
+                                $. s$$$$$$$$$$$$$$`$$Ss
+                                "$$$$$$$$$$$$$$$$$$o$$$       ,
+                               s$$$$$$$$$$$$$$$$$$$$$$$$s,  ,s
+                              s$$$$$$$$$"$$$$$$""""$$$$$$"$$$$$,
+                              s$$$$$$$$$$s""$$$$ssssss"$$$$$$$$"
+                             s$$$$$$$$$$'         `"""ss"$"$s""
+                             s$$$$$$$$$$,              `"""""$  .s$$s
+                             s$$$$$$$$$$$$s,...               `s$$'  `
+                         `ssss$$$$$$$$$$$$$$$$$$$$####s.     .$$"$.   , s-
+                           `""""$$$$$$$$$$$$$$$$$$$$#####$$$$$$"     $.$'
+                                 "$$$$$$$$$$$$$$$$$$$$$####s""     .$$$|
+                                  "$$$$$$$$$$$$$$$$$$$$$$$$##s    .$$" $
+                                   $$""$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"   `
+                                  $$"  "$"$$$$$$$$$$$$$$$$$$$$S""""'
+                             ,   ,"     '  $$$$$$$$$$$$$$$$####s
+                             $.          .s$$$$$$$$$$$$$$$$$####"
+                 ,           "$s.   ..ssS$$$$$$$$$$$$$$$$$$$####"
+                 $           .$$$S$$$$$$$$$$$$$$$$$$$$$$$$#####"
+                 Ss     ..sS$$$$$$$$$$$$$$$$$$$$$$$$$$$######""
+                  "$$sS$$$$$$$$$$$$$$$$$$$$$$$$$$$########"
+           ,      s$$$$$$$$$$$$$$$$$$$$$$$$#########""'
+           $    s$$$$$$$$$$$$$$$$$$$$$#######""'      s'         ,
+           $$..$$$$$$$$$$$$$$$$$$######"'       ....,$$....    ,$
+            "$$$$$$$$$$$$$$$######"' ,     .sS$$$$$$$$$$$$$$$$s$$
+              $$$$$$$$$$$$#####"     $, .s$$$$$$$$$$$$$$$$$$$$$$$$s.
+   )          $$$$$$$$$$$#####'      `$$$$$$$$$###########$$$$$$$$$$$.
+  ((          $$$$$$$$$$$#####       $$$$$$$$###"       "####$$$$$$$$$$
+  ) \         $$$$$$$$$$$$####.     $$$$$$###"             "###$$$$$$$$$   s'
+ (   )        $$$$$$$$$$$$$####.   $$$$$###"                ####$$$$$$$$s$$'
+ )  ( (       $$"$$$$$$$$$$$#####.$$$$$###'                 .###$$$$$$$$$$"
+ (  )  )   _,$"   $$$$$$$$$$$$######.$$##'                .###$$$$$$$$$$
+ ) (  ( \.         "$$$$$$$$$$$$$#######,,,.          ..####$$$$$$$$$$$"
+(   )$ )  )        ,$$$$$$$$$$$$$$$$$$####################$$$$$$$$$$$"
+(   ($$  ( \     _sS"  `"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$S$$,
+ )  )$$$s ) )  .      .   `$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"'  `$$
+  (   $$$Ss/  .$,    .$,,s$$$$$$##S$$$$$$$$$$$$$$$$$$$$$$$$S""        '
+    \)_$$$$$$$$$$$$$$$$$$$$$$$##"  $$        `$$.        `$$.
+        `"S$$$$$$$$$$$$$$$$$#"      $          `$          `$
+            `"""""""""""""'         '           '           '
+*/
+/*****************************************************************************************************************/
+public class Main{
+    static int MoD = 1000000007;
+    static long MAXN= (long) (1e6+1000);
+    static long fact[]=new long[(int) (MAXN+1)];
+    /*****************************************************************************************************************/
+    static class FastReader{BufferedReader br;StringTokenizer st;public FastReader(){br = new BufferedReader(new InputStreamReader(System.in));}String next(){while (st == null || !st.hasMoreElements()) {try {st = new StringTokenizer(br.readLine());}catch (IOException e){e.printStackTrace();}}return st.nextToken();}int nextInt(){ return Integer.parseInt(next());}long nextLong(){return Long.parseLong(next());}double nextDouble(){return Double.parseDouble(next());}String nextLine(){String str = "";try{if(st.hasMoreTokens()){str = st.nextToken("\n");}else{str = br.readLine();}}catch (IOException e) {e.printStackTrace();}return str;}
+
+        public int[] readIntArray(int n,int s,int e) {
+            int[] ar = new int[n];
+            for(int i=s; i<e; ++i)
+                ar[i]=se.nextInt();
+            return ar;}
+        public long[] readIntArrayLONG(int n,int s,int e) {
+            long[] ar = new long[n];
+            for(int i=s; i<e; ++i)
+                ar[i]=se.nextLong();
+            return ar;}
+
+        int[][] next2DInt(int n, int m,int s,int e) {
+            int[][] arr = new int[n][];
+            for (int i = s; i < e; i++) {
+                arr[i] = se.readIntArray(m,0,m);
+            }
+            return arr;}
+        long[][] next2DLong(int n, int m,int s,int e) {
+            long[][] arr = new long[n][];
+            for (int i = s; i < e; i++) {
+                arr[i] = se.readIntArrayLONG(m,0,m);
+            }
+            return arr;}
+        List<Long> asLongList() throws IOException {
+            List<Long> list = new ArrayList<>();
+            String s = se.next();
+            String[] str = s.split(" ");
+            for (String string : str) {
+                list.add(Long.parseLong(string));
+            }
+            return list;
+        }
+        List<Integer> asIntList() throws IOException {
+            List<Integer> list = new ArrayList<>();
+            String s = se.next();
+            String[] str = s.split(" ");
+            for (String string : str) {
+                list.add(Integer.parseInt(string));
+            }
+            return list;
+        }
+    }
+    static class Reader { final private int BUFFER_SIZE = 1 << 16;private DataInputStream din;private byte[] buffer;private int bufferPointer, bytesRead;public Reader() {din = new DataInputStream(System.in);buffer = new byte[BUFFER_SIZE];bufferPointer = bytesRead = 0;}public Reader(String file_name) throws IOException {din = new DataInputStream(new FileInputStream(file_name));buffer = new byte[BUFFER_SIZE];bufferPointer = bytesRead = 0;}public String readLine() throws IOException {byte[] buf = new byte[64];int cnt = 0, c;while ((c = read()) != -1) {if (c == '\n') break;buf[cnt++] = (byte) c;}return new String(buf, 0, cnt);}public int nextInt() throws IOException {int ret = 0;byte c = read();while (c <= ' ') c = read();boolean neg = (c == '-');if (neg) c = read();do {ret = ret * 10 + c - '0';} while ((c = read()) >= '0' && c <= '9');if (neg) return -ret;return ret;}public long nextLong() throws IOException {long ret = 0;byte c = read();while (c <= ' ') c = read();boolean neg = (c == '-');if (neg) c = read();do {ret = ret * 10L + c - '0';} while ((c = read()) >= '0' && c <= '9');if (neg) return -ret;return ret;}public double nextDouble() throws IOException {double ret = 0, div = 1;byte c = read();while (c <= ' ') c = read();boolean neg = (c == '-');if (neg) c = read();do {ret = ret * 10 + c - '0';} while ((c = read()) >= '0' && c <= '9');if (c == '.') while ((c = read()) >= '0' && c <= '9') ret += (c - '0') / (div *= 10);if (neg) return -ret;return ret;}private void fillBuffer() throws IOException {bytesRead = din.read(buffer, bufferPointer = 0, BUFFER_SIZE);if (bytesRead == -1) buffer[0] = -1;}private byte read() throws IOException {if (bufferPointer == bytesRead) fillBuffer();return buffer[bufferPointer++];}public char[] next() throws IOException {StringBuilder sb = new StringBuilder();byte c;while ((c = read()) <= ' ') ;do {sb.append((char) c);} while ((c = read()) > ' ');return sb.toString().toCharArray();}public int nextInt2() throws IOException {int ret = 0;byte c = read();while (c <= ' ') c = read();boolean neg = (c == '-');if (neg) c = read();do {ret = ret * 10 + c - '0';} while ((c = read()) >= '0' && c <= '9');if (neg) return -ret;return ret;}public void close() throws IOException {if (din == null) return;din.close();}
+
+        public int[] readIntArray(int n,int se,int e)throws IOException {
+            int[] ar = new int[n];
+            for(int i=se; i<e; ++i)
+                ar[i]=s.nextInt();
+            return ar;}
+        public long[] readIntArrayLONG(int n, int se, int e)throws IOException {
+            long[] ar = new long[n];
+            for(int i=se; i<e; ++i)
+                ar[i]=s.nextLong();
+            return ar;}
+
+        int[][] next2DInt(int n, int m,int se,int e)throws IOException {
+            int[][] arr = new int[n][];
+            for (int i = se; i < e; i++) {
+                arr[i] = s.readIntArray(m,0,m);
+            }
+            return arr;}
+        long[][] next2DLong(int n, int m, int se, int e)throws IOException {
+            long[][] arr = new long[n][];
+            for (int i = se; i < e; i++) {
+                arr[i] = s.readIntArrayLONG(m,0,m);
+            }
+            return arr;}
+        List<Long> asLongList(int n) throws IOException {
+            List<Long> list = new ArrayList<>();
+            for (int i=0;i<n;i++) {
+                list.add(s.nextLong());
+            }
+            return list;
+        }
+        List<Integer> asIntList(int n) throws IOException {
+            List<Integer> list = new ArrayList<>();
+            for (int i=0;i<n;i++) {
+                list.add(s.nextInt());
+            }
+            return list;}
+    }
+    public static long gcd(long a, long b) {if (b==0) return a;return gcd(b,a%b);}
+    public static long LCM(long u, long v) {return (u / gcd(u, v)) * v;}
+    public static void debugL(long[] a,long s){for(long i=s;i<a.length;i++){System.out.print(a[(int) i]+" ");}}
+    public static void debugI(int[] a,long s){for(long i=s;i<a.length;i++){System.out.print(a[(int) i]+" ");}}
+    public static long smallestDivisor(long n){if (n % 2 == 0) return 2;for (long i = 3; i * i <= n; i += 1) {if (n % i == 0) return i;}return n;}
+    public static long max4(long a, long b, long c, long d) {if (a >= b && a >= c && a >= d) return a;else if (b >= a && b >= c && b >= d) return b;else if (c >= a && c >= b && c >= d) return c;else if (d >= b && d >= c && d >= a) return d;return a;}
+    public static boolean checkString(String s1, String s2) {char[] tempArrays1=s1.toCharArray();Arrays.sort(tempArrays1);String sortedS1=new String(tempArrays1);char[] tempArrays2=s2.toCharArray();Arrays.sort(tempArrays2);String sortedS2=new String(tempArrays2);if(sortedS1.equals(sortedS2)){return true;}return false;}
+    public static long[] minSUMofPROC(long n,int c){long[] arr =new long[c];long k=1;long x=0;for (int i = 0; i<10; i++){arr[i]=1;}while (k<n){long ok=arr[(int) (x%10)];k=k/ok;arr[(int) (x%10)]++;ok++;k=k*ok;x++;}return  arr;}
+    public static String powwerSTR(String str,long n){String res="";if(n%2==0){res = str;n--;}while(n>0){if(n%2==1){res=res+str;n--;}else{res =res+res;n=n/2;}}return res;}
+    public static boolean isPalindrome(String s) {StringBuilder sb=new StringBuilder(s);if(sb.reverse().toString().equals(s)){return true;}return false;}
+    public static long nCr(int n,int k){long ans=1L;k=k>n-k?n-k:k;for( int j=1;j<=k;j++,n--){if(n%j==0){ans*=n/j;}else{if(ans%j==0){ans=ans/j*n;}else{ans=(ans*n)/j;}}}return ans;}
+    public static long sumofarray(int[] arr){long n=arr.length;long sum=0;for(long i = 0; i<n; i++){sum+=arr[(int) i];}return sum;}
+    public static long power(long x, long y, long p) {long res = 1;x = x % p;while (y > 0){if (y % 2 == 1) res = (res * x) % p;y = y >> 1;x = (x * x) % p;}return res;}
+    public static long max3(long a,long b,long c){{if (a >= b && a >= c) return a;else if (b >= a && b >= c ) return b;else if (c >= b) return c;return a;}}
+    public static long getAdd(long x) {long m1 = 10, m2 = 0;while(x > 0) {long y = x % 10;x /= 10;m1 = Math.min(m1, y);m2 = Math.max(m2, y);}return m1 * m2;}
+    public static void sieve_of_erantothenes() {fact[1] = 1;for (long i = 2; i <= MAXN; i++) fact[(int) i] = i;for (long i = 4; i <= MAXN; i += 2) fact[(int) i] = 2;for (long i = 3; i * i <= MAXN; i++){if (fact[(int) i] == i){for (long j = i * i; j <= MAXN; j += i) if (fact[(int) j] == j) fact[(int) j] = i;}}}
+    public static long factorial(long n) {if (n == 0)return 1;return n*factorial(n-1);}
+    public static String SUMofDigits(String str){long n=0;for(int i=0;i<str.length();i++){n+= str.charAt(i)-'0';}String temp= String.valueOf(n);return temp;}
+    public static long SumOfDigits (long num) {long sum = 0;while (num > 0) {long d = num % 10;sum += d;num /= 10;}return sum;}
+    public static long numOF_2(long n){long ans=0;while (n%2==0){n=n/2;ans++;}return ans;}
+    public static ArrayList<Long> trial_division2(long n) {ArrayList<Long> factorization = new ArrayList<Long>();while (n % 2 == 0) {factorization.add(2L);n /= 2;}for (long d = 3; d * d <= n; d += 2) {while (n % d == 0) {factorization.add(d);n /= d;}}if (n > 1) factorization.add(n);return factorization;}
+    public static HashSet<Long> trial_division2SET(long n) {HashSet<Long> factorization = new HashSet<>();while (n % 2 == 0) {factorization.add(2L);n /= 2;}for (long d = 3; d * d <= n; d += 2) {while (n % d == 0) {factorization.add(d);n /= d;}}if (n > 1) factorization.add(n);return factorization;}
+    public static  long binpow(long  a, long  b,  long m) {a %= m;long res = 1;while (b > 0) {if ((b & 1)==1) res = res * a % m;a = a * a % m;b >>= 1;}return res%m;}
+    public static long binaryExponentiation(long a, long n) {if(n==0) {return 1;}if(n==1) {return a;}long val = binaryExponentiation(a,n/2);val = (val*val)%MoD;val = (val*binaryExponentiation(a, n%2))%MoD;return val;}
+
+    public static String reverseString(String str) {StringBuilder sb = new StringBuilder(str);return sb.reverse().toString();}
+
+//    public static int lower_bound(long val,int start,long []arr){int low = start;int high = arr.length-1;int ans = -1;while(low<=high){int mid = (low+high)/2;if(arr[mid]>=val){high = mid - 1;ans  = mid;}else{low = mid + 1;}}return ans;}
+//    public static int upper_bound(long val,int start,long []arr){int low = start;int high = arr.length-1;int ans = -1;while(low<=high){int mid = (low+high)/2;if(arr[mid]<=val){low = mid + 1;ans  = mid;}else{high = mid - 1;}}return ans;}
+
+    public static Long getMin(long[] arr, int n) {return (Long) Arrays.stream(arr).min().getAsLong();}
+    public static Long getMax(long[] arr, int n) {return (Long) Arrays.stream(arr).max().getAsLong();}
+    public static void fill(int[][]arr) {for(int i=0;i<arr.length;i++) {for(int j=0;j<arr[0].length;j++) arr[i][j]=-1;}}
+    private static boolean Sqrt(long x){long a=(long)Math.sqrt(x);return a*a==x;}
+
+    public static HashMap<Long, Integer> map_prime_factors(long n) {HashMap<Long, Integer> map = new HashMap<>();while (n % 2 == 0) {map.put(2L, map.getOrDefault(2L, 0) + 1);n /= 2L;}for (long i = 3; i <= Math.sqrt(n); i++) {while (n % i == 0) {map.put(i, map.getOrDefault(i, 0) + 1);n /= i;}}if (n > 2) {map.put(n, map.getOrDefault(n, 0) + 1);}return map;}
+    public static String DecimalToBinary(long num) {String str = "";while (num > 0) {if ((num & 1) == 1){str += '1';} else{str += '0';}num >>= 1;}return str;}
+
+    public static void println(long c) {out.println(c);}
+    public static void print(long c)   {out.print(c);}
+    public static void print(int c) 	{out.print(c);}
+    public static void println(int x) 	{out.println(x);}
+    public static void print(String s) {out.print(s);}
+    public static void println(String s){out.println(s);}
+    public static void println(boolean b){out.println(b);}
+    public static void println(int[][]arr) {for(int i=0;i<arr.length;i++) {for(int j=0;j<=i;j++)print(arr[i][j]+" "); println("");}}
+    public static void println(long[][]arr) {for(int i=0;i<arr.length;i++) {for(int j=0;j<arr[0].length;j++) print(arr[i][j]+" "); print("\n");}}
+    public static void println(int[]arr){for(int i=0;i<arr.length;i++)print(arr[i]+" ");print("\n");}
+    public static void println(ArrayList<Integer> list1){for(int i = 0; i< list1.size(); i++)print(list1.get(i)+" ");print("\n");}
+    public static void println1(ArrayList<Integer> list){for(int i = 0; i< list.size(); i++)print(list.get(i)+" ");print("\n");}
+    public static void println(long[]arr){ for(int i=0;i<arr.length;i++) print(arr[i]+" ");print("\n"); }
+    public static void println(char x) {out.println(x);}
+    public static long[]inputArray(int n){ long[]arr=new long[n];for(int i=0;i<n;i++)arr[i]=in.nextInt();return arr;}
+    public static InputStream inputStream = System.in;
+    public static OutputStream outputStream = System.out;
+    public static InputReader in = new InputReader(inputStream);
+    public static PrintWriter out = new PrintWriter(outputStream);
+
+    public static class InputReader { private InputStream stream;private byte[] inbuf = new byte[1024];private int start= 0;private int end = 0;public InputReader(InputStream stream) {this.stream = stream;}private int readByte() {if (start == -1) throw new UnknownError();if (end >= start) {end= 0;try {start= stream.read(inbuf);} catch (IOException e) {throw new UnknownError();}if (start<= 0) return -1;}return inbuf[end++];}private boolean isSpaceChar(int c) {return !(c >= 33 && c <= 126);}private int skip() {int b;while ((b = readByte()) != -1 && isSpaceChar(b)) ;return b;}public String next() {int b = skip();StringBuilder sb = new StringBuilder();while (!(isSpaceChar(b))) { /* when nextLine, (isSpaceChar(b) && b != ' ')*/sb.appendCodePoint(b);b = readByte();}return sb.toString();}public int nextInt() {int num = 0, b;boolean minus = false;while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-')) ;if (b == '-') {minus = true;b = readByte();}while (true) {if (b >= '0' && b <= '9') {num = num * 10 + (b - '0');} else {return minus ? -num : num;}b = readByte();}}public long nextLong() {long num = 0;int b;boolean minus = false;while ((b = readByte()) != -1 && !((b >= '0' && b <= '9') || b == '-')) ;if (b == '-') {minus = true;b = readByte();}while (true) {if (b >= '0' && b <= '9') {num = num * 10 + (b - '0');} else {return minus ? -num : num;}b = readByte();}}}
+
+    /*****************************************************************************************************************/
+
+    public long[] findRemoved(int[] nums1, int[] nums2, int[] nums3) {int Xor = findXor(nums2);return new long[]{Xor ^ findXor(nums1), Xor ^ findXor(nums3)};}
+    public int findXor(int[] nums) {int xor = 0;for (long num : nums) xor ^= num;return xor;}
+
+    /* --------- Apply k Permutations on a sequence ------------
+       TC : nLog(k)                                               */
+    private static long[] permute(long[] sequence, long[] permutation, long k) {while (k > 0) {if ((k & 1) == 1) {sequence = applyPermute(sequence, permutation);}permutation = applyPermute(permutation, permutation);k >>= 1;}return sequence;}
+    private static long[] applyPermute(long[] sequence, long[] permutation) {
+        long[] newSequence = new long[sequence.length];
+        for (int i = 1; i < sequence.length; i++) {
+            newSequence[i] = sequence[(int) permutation[i]]; // newSequence[permutation[i]] = sequence[i]; Acc. to given Question
+        }return newSequence;}
+
+    /* --------- Apply k Permutations on a sequence ------------
+           TC : nLog(k)                                               */
+
+    public static int upper__bound(long[] arr,int low, int high, long target){int n = arr.length;int mid = 0;while (low < high && low != n){mid = low + (high - low) / 2;if(target >= arr[mid]) {low = mid + 1;} else {high = mid;}}return low;}
+    public static int lower__bound(long[] arr, int low, int high, long key) {int mid;while (low < high) {mid = low + (high - low) / 2;if (key <= arr[mid]) {high = mid;} else {low = mid + 1;}}if (low < arr.length && arr[low] < key) {low++;}return low;}
+
+    public static void sort(int[] a) {
+        int n = a.length;
+        for (int i = 0; i < n; i++) {int id = (int) (random() * n);int t = a[i];a[i] = a[id];a[id] = t;}
+        Arrays.sort(a);}
+    public static void sort(long[] a) {
+        int n = a.length;
+        for (int i = 0; i < n; i++) {int id = (int) (random() * n);long t = a[i];a[i] = a[id];a[id] = t;}
+        Arrays.sort(a);}
+    public static void sort(int[] a, Comparator<Integer> cmp) {
+        int n = a.length;
+        Integer[] arr = new Integer[n];
+        for(int i = 0; i < n; i++) arr[i] = a[i];
+        Arrays.sort(arr, cmp);
+        for(int i = 0; i < n; i++) a[i] = arr[i];}
+    public static void sort(long[] a, Comparator<Long> cmp) {
+        int n = a.length;
+        Long[] arr = new Long[n];
+        for(int i = 0; i < n; i++) arr[i] = a[i];
+        Arrays.sort(arr, cmp);
+        for(int i = 0; i < n; i++) a[i] = arr[i];}
+
+    public static boolean check_pow_2(long n){long t= n&(n-1);if(t==0&&n!=0){return true;}return false;}
+    public static long countUnsetBits(long n) {long x = n;n |= n >> 1;n |= n >> 2;n |= n >> 4;n |= n >> 8;n |= n >> 16;return Integer.bitCount((int) (x^ n));}
+    public static long countSetBits(long n) {long count = 0;while (n > 0) {n &= (n - 1);count++;}return count;}
+
+    public static boolean chekstringsubsq(String str,String ans){String tmp="";int l=0;for(int i=0;i<str.length()&&l<ans.length();i++){if(str.charAt(i)==ans.charAt(l)){tmp+= ans.charAt(l);l++;}}if(ans.equals(tmp))return false;return true;}
+    public static long gcdec(long a, long b, long[] x, long[] y) {if (b == 0) {x[0] = 1;y[0] = 0;return a;}long[] x1 = new long[1];long[] y1 = new long[1];long d = gcdec(b, a % b, x1, y1);x[0] = y1[0];y[0] = x1[0] - y1[0] * (a / b);return d;}
+    public static void coprime_1_to_n(long n) {long[] phi = new long[(int) (n+1)];for (long i = 0; i <= n; i++) phi[(int) i] = i;for (long i = 2; i <= n; i++) {if (phi[(int)i] == i) {for (long j = i; j <= n; j += i) phi[(int)j] -= phi[(int)j] / i;}}}
+    public static long base_2log(long N) {long result = (int)(Math.log(N) / Math.log(2));return result;}
+    public static void shuffleArray(int[] array) {int index;Random random = new Random();for (int i = array.length - 1; i > 0; i--) {index = random.nextInt(i + 1);if (index != i) {array[index] ^= array[i];array[i] ^= array[index];array[index] ^= array[i];}}}
+    public static long subarrayXor(int[] arr, int n, long m) {HashMap<Long, Integer> HashTable = new HashMap<>();HashTable.put(0L, 1);int count = 0;long curSum = 0;for (int i = 0; i < n; i++) {curSum ^= arr[i];if (HashTable.containsKey(curSum ^ m)) count += HashTable.get(curSum ^ m);if (!HashTable.containsKey(curSum)) HashTable.put(curSum, 0);HashTable.put(curSum, HashTable.get(curSum) + 1);}return (count);}
+    public static void reverseArray(int[] a) {int n = a.length;int arr[] = new int[n];for (int i = 0; i < n; i++) arr[i] = a[n - i - 1];for (int i = 0; i < n; i++) a[i] = arr[i];}
+    public static void reverseArray(long[] a) {int n = a.length;long arr[] = new long[n];for (int i = 0; i < n; i++) arr[i] = a[n - i - 1];for (int i = 0; i < n; i++) a[i] = arr[i];}
+    public static long sumOfMaximumOfSubsets(Long[] arr, int N,long mm) {Arrays.sort(arr, Collections.reverseOrder());long sum = arr[0]%=mm;for (int i = 1; i < N; i++) {sum = 2 * sum + arr[i];sum%=mm;}return sum%=mm;}
+
+    /*****************************************************************************************************************/
+    static ArrayList<Integer>[] tree;
+    //    for (int i = 0; i < 26; i++) {
+//        tree[i] = new ArrayList<Integer>();
+//    }
+    static int[] seq;
+    static FastReader se = new FastReader();
+    static Reader s=new Reader();
+    static HashSet<Long> set=new HashSet<>();
+    static boolean[][] vis;
+    static int value;
+    public  static int dfs(int n,int m,int row,int col,int arr[][]){
+        if (row>n || row<0 || col>m || col<0 || arr[row][col]==0 || vis[row][col]) return 0;
+        vis[row][col] =true;
+        value++;
+        value+= dfs(n,m,(row+1),col,arr);
+        value+=dfs(n,m,(row-1),col,arr);
+        value+=dfs(n,m,row,(col+1),arr);
+        value+= dfs(n,m,row,(col-1),arr);
+        value+= dfs(n,m,(row+1),(col+1),arr);
+        value+=dfs(n,m,(row-1),(col-1),arr);
+        value+=dfs(n,m,(row-1),(col+1),arr);
+        value+= dfs(n,m,(row+1),(col-1),arr);
+        return value;
+    }
+    static long Me= 998244353;
+
+    public static void swap(int i, int j, char[] nums) {
+        char t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;}
+    static long[][] dp;
+    static long[][][] cp;
+    static int stat1,stat2;
+    // static int end1,end2;
+    public static long subsetSumUtil(int ind, int target,int[] arr,int n){
+        if(ind == 0){
+            if(target==arr[0])return arr[0];
+            return Integer.MIN_VALUE;}
+        if(dp[ind][target]!=-1) return dp[ind][target];
+        long notTaken = subsetSumUtil(ind-1,target,arr,n);
+        long taken = arr[ind]+subsetSumUtil(ind-1, (int) (target^arr[ind]),arr,n);
+        dp[ind][target]=Math.max(notTaken,taken);
+        return dp[ind][target];
+    }
+    public static long lcsUtil(String s1, String s2, int ind1, int ind2){
+        if(ind1<0 || ind2<0) return 0;
+        if(dp[ind1][ind2]!=-1) return dp[ind1][ind2];
+        if(s1.charAt(ind1) == s2.charAt(ind2)) return dp[ind1][ind2] = 1 + lcsUtil(s1,s2,ind1-1,ind2-1);
+        else return dp[ind1][ind2] = Math.max(lcsUtil(s1, s2, ind1, ind2 - 1),lcsUtil(s1, s2, ind1 - 1, ind2));
+    }
+    static int[] fib;
+    static int lcsubstring(String s1, String s2){
+        int n = s1.length();
+        int m = s2.length();
+        int[][] dp=new int[n+1][m+1];
+        int ans = 0;
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s1.charAt(i-1)==s2.charAt(j-1)){int val = 1 + dp[i-1][j-1];dp[i][j] = val;ans = Math.max(ans,val);} else dp[i][j] = 0;
+            }}return ans;}
+
+    public static long mstock(int ind,int st,int n,int arr[]){
+        if(ind==n)return 0;
+        if(dp[ind][st]!=-1)return dp[ind][st];
+        if(st==1){
+            return dp[ind][st]=Math.max(-arr[ind]+mstock(ind+1,0,n,arr),mstock(ind+1,1,n,arr));
+        }else return dp[ind][st]=Math.max(arr[ind]+mstock(ind+1,1,n,arr),mstock(ind+1,0,n,arr));
+    }
+    public static int getAns(int[] arr, int n,  int ind, int prev_index,int[][] dp){
+        if(ind == n) return 0;
+        if(dp[ind][prev_index+1]!=-1) return dp[ind][prev_index+1];
+
+        int notTake = getAns(arr, n, ind + 1, prev_index, dp);
+        int take = 0;
+        if(prev_index == -1 || (arr[ind] > arr[prev_index]&&arr[ind]%arr[prev_index]==0)){
+            take = 1 + getAns(arr,n,ind+1,ind,dp);
+        }
+        return dp[ind][prev_index+1] = Math.max(notTake,take);}
+
+    static class Num implements Comparable<Num> {
+        int p;
+        int[] pr;
+        public Num(int[] arr, int x) {
+            pr = arr;
+            p = x;
+        }
+        public int compareTo(Num n) {
+            if (p == n.p) {
+                for (int i = 0; i < pr.length; i++) {
+                    if (pr[i] != n.pr[i])
+                        return pr[i] - n.pr[i];
+                }
+            }
+            return p - n.p;
+        }}
+    public static class Tree<T> extends TreeSet<T> {
+        public Tree() {
+            super();
+        }
+    }
+    static long vp[];
+    public static long stick(int ind,long[] arr,int cou,int n,int k){
+
+        return dp[ind][cou];
+    }
+    static class pair {
+        public int x, y, d;
+
+        public pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    public static void main(String[] args) throws Exception{
+//        sieve_of_erantothenes();
+//        Reader s = new Reader();
+        int Te = 1;
+        Te = s.nextInt();
+        superOuter:
+        while(Te-- >0) {
+            int n = s.nextInt();
+            pair a[] = new pair[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = new pair(s.nextInt(),s.nextInt());
+            }
+            Arrays.sort(a, new Comparator<pair>() {
+                @Override
+                public int compare(pair o1, pair o2) {
+                    if (o1.x > o2.x) {
+                        return 1;
+                    } else if (o1.x < o2.x) {
+                        return -1;
+                    } else if (o1.y > o2.y) {
+                        return 1;
+                    } else if (o1.y < o2.y) {
+                        return -1;
+                    } else {
+                        return 0;
+                    }
+                }
+            });
+            int ans = n - 1;
+            RedBlackTree<Integer> r = new RedBlackTree<>();
+            for (int i = 0; i < n; i++) {
+                int res = 0;
+                int max = n - 1;
+                int min = i;
+                int idx = n;
+                while (max >= min) {
+                    int mid = (max + min) / 2;
+                    if (a[mid].x > a[i].y) {
+                        idx = mid;
+                        max = mid - 1;
+                    } else {
+                        min = mid + 1;
+                    }
+                }
+                res += n - idx + r.numSmaller(a[i].x);
+                ans = Math.min(ans, res);
+                r.insert(a[i].y);
+            }
+            System.out.println(ans);
+
+
+            out.flush();
+        }
+
+        out.close();
+    }}
+
+/*****************************************************************************************************************/
+
+class Model<T,U> { T val;U ind;Model(T val,U ind) {this.val=val;this.ind=ind;}T getFirst() {return val;}U getSecond() {return ind;}}
+//PriorityQueue<Model<Integer,Integer>> pq=new PriorityQueue<>((a,b)->b.val-a.val);
+
+class Pair<T, U> { T a;U b;Pair(T a,U b) {this.a=a;this.b=b;}T getFirst() {return a;}U getSecond() {return b;}}
+class Triplet<T,U,V>{ T a;U b;V c;Triplet(T a,U b,V c){this.a = a;this.b = b;this.c = c;}T getFirst() {return a;}U getSecond() {return b;} V getThird(){return c;}}
+
+class MultiSet<T> { HashMap<T, Integer> fre;TreeSet<T> set;int size;public MultiSet() {set = new TreeSet<>();fre = new HashMap<>();size = 0;}public void add(T elem) {if (fre.get(elem) == null || fre.get(elem) == 0) {fre.put(elem, 0);set.add(elem);}fre.put(elem, fre.get(elem) + 1);size++;}public void remove(T elem) {fre.put(elem, fre.get(elem) - 1);if (fre.get(elem) == 0) {set.remove(elem);}size--;}public boolean contains(T elem) {return set.contains(elem);}}
+
+// check that kth bit is set is to n&(2^k) if(0)no:yes;
+// check jth bit if(((x >>j) & 1) == 1);
+// to togle kth bit n^(2<<k);
+// n%(2<<k)== n&(2<<k-1);
+// swap x and y -> x=x^y;y=x^y;x=x^y;
+// x= a^b^x; if x==a,change it to b;
+// a+b==(a^b)+2*(a&b);
+// a+b==(a|b)+(a&b);
+// fermi theorem (a^p)%p=a;and (a^(p-1))%p=1 ; where p is prime and gcd(a,p)==1;
+/*
+    private static class StringLengthComparator implements Comparator<String> {
+        @Override
+        public int compare(String a, String b) {
+            return a.length() - b.length();
+        }
+     }
+    Arrays.sort(arr, new StringLengthComparator());
+
+    PriorityQueue<pair> q = new PriorityQueue<>(new Comparator<pair>() {
+                @Override
+                public int compare(pair o1, pair o2) {
+                    if (o1.x > o2.x) {
+                        return 1;
+                    } else if (o1.x < o2.x) {
+                        return -1;
+                    } else {
+                        if (o1.y > o2.y) {
+                            return -1;
+                        } else if (o1.y < o2.y) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+            })
+ */
+
+ class RedBlackNode<T extends Comparable<T>> {
+
+    /**
+     * Possible color for this node
+     */
+    public static final int BLACK = 0;
+    /**
+     * Possible color for this node
+     */
+    public static final int RED = 1;
+    // the key of each node
+    public T key;
+
+    /**
+     * Parent of node
+     */
+    RedBlackNode<T> parent;
+    /**
+     * Left child
+     */
+    RedBlackNode<T> left;
+    /**
+     * Right child
+     */
+    RedBlackNode<T> right;
+    // the number of elements to the left of each node
+    public int numLeft = 0;
+    // the number of elements to the right of each node
+    public int numRight = 0;
+    // the color of a node
+    public int color;
+
+    RedBlackNode() {
+        color = BLACK;
+        numLeft = 0;
+        numRight = 0;
+        parent = null;
+        left = null;
+        right = null;
+    }
+
+    // Constructor which sets key to the argument.
+    RedBlackNode(T key) {
+        this();
+        this.key = key;
+    }
+}// end class RedBlackNode
+
+ class RedBlackTree<T extends Comparable<T>> {
+
+    // Root initialized to nil.
+    private RedBlackNode<T> nil = new RedBlackNode<T>();
+    private RedBlackNode<T> root = nil;
+
+    public RedBlackTree() {
+        root.left = nil;
+        root.right = nil;
+        root.parent = nil;
+    }
+
+    // @param: X, The node which the lefRotate is to be performed on.
+    // Performs a leftRotate around X.
+    private void leftRotate(RedBlackNode<T> x) {
+
+        // Call leftRotateFixup() which updates the numLeft
+        // and numRight values.
+        leftRotateFixup(x);
+
+        // Perform the left rotate as described in the algorithm
+        // in the course text.
+        RedBlackNode<T> y;
+        y = x.right;
+        x.right = y.left;
+
+        // Check for existence of y.left and make pointer changes
+        if (!isNil(y.left)) {
+            y.left.parent = x;
+        }
+        y.parent = x.parent;
+
+        // X's parent is nul
+        if (isNil(x.parent)) {
+            root = y;
+        } // X is the left child of it's parent
+        else if (x.parent.left == x) {
+            x.parent.left = y;
+        } // X is the right child of it's parent.
+        else {
+            x.parent.right = y;
+        }
+
+        // Finish of the leftRotate
+        y.left = x;
+        x.parent = y;
+    }// end leftRotate(RedBlackNode X)
+
+    // @param: X, The node which the leftRotate is to be performed on.
+    // Updates the numLeft & numRight values affected by leftRotate.
+    private void leftRotateFixup(RedBlackNode x) {
+
+        // Case 1: Only X, X.right and X.right.right always are not nil.
+        if (isNil(x.left) && isNil(x.right.left)) {
+            x.numLeft = 0;
+            x.numRight = 0;
+            x.right.numLeft = 1;
+        } // Case 2: X.right.left also exists in addition to Case 1
+        else if (isNil(x.left) && !isNil(x.right.left)) {
+            x.numLeft = 0;
+            x.numRight = 1 + x.right.left.numLeft
+                    + x.right.left.numRight;
+            x.right.numLeft = 2 + x.right.left.numLeft
+                    + x.right.left.numRight;
+        } // Case 3: X.left also exists in addition to Case 1
+        else if (!isNil(x.left) && isNil(x.right.left)) {
+            x.numRight = 0;
+            x.right.numLeft = 2 + x.left.numLeft + x.left.numRight;
+
+        } // Case 4: X.left and X.right.left both exist in addtion to Case 1
+        else {
+            x.numRight = 1 + x.right.left.numLeft
+                    + x.right.left.numRight;
+            x.right.numLeft = 3 + x.left.numLeft + x.left.numRight
+                    + x.right.left.numLeft + x.right.left.numRight;
+        }
+
+    }// end leftRotateFixup(RedBlackNode X)
+
+    // @param: X, The node which the rightRotate is to be performed on.
+    // Updates the numLeft and numRight values affected by the Rotate.
+    private void rightRotate(RedBlackNode<T> y) {
+
+        // Call rightRotateFixup to adjust numRight and numLeft values
+        rightRotateFixup(y);
+
+        // Perform the rotate as described in the course text.
+        RedBlackNode<T> x = y.left;
+        y.left = x.right;
+
+        // Check for existence of X.right
+        if (!isNil(x.right)) {
+            x.right.parent = y;
+        }
+        x.parent = y.parent;
+
+        // y.parent is nil
+        if (isNil(y.parent)) {
+            root = x;
+        } // y is a right child of it's parent.
+        else if (y.parent.right == y) {
+            y.parent.right = x;
+        } // y is a left child of it's parent.
+        else {
+            y.parent.left = x;
+        }
+        x.right = y;
+
+        y.parent = x;
+
+    }// end rightRotate(RedBlackNode y)
+
+    // @param: y, the node around which the righRotate is to be performed.
+    // Updates the numLeft and numRight values affected by the rotate
+    private void rightRotateFixup(RedBlackNode y) {
+
+        // Case 1: Only y, y.left and y.left.left exists.
+        if (isNil(y.right) && isNil(y.left.right)) {
+            y.numRight = 0;
+            y.numLeft = 0;
+            y.left.numRight = 1;
+        } // Case 2: y.left.right also exists in addition to Case 1
+        else if (isNil(y.right) && !isNil(y.left.right)) {
+            y.numRight = 0;
+            y.numLeft = 1 + y.left.right.numRight
+                    + y.left.right.numLeft;
+            y.left.numRight = 2 + y.left.right.numRight
+                    + y.left.right.numLeft;
+        } // Case 3: y.right also exists in addition to Case 1
+        else if (!isNil(y.right) && isNil(y.left.right)) {
+            y.numLeft = 0;
+            y.left.numRight = 2 + y.right.numRight + y.right.numLeft;
+
+        } // Case 4: y.right & y.left.right exist in addition to Case 1
+        else {
+            y.numLeft = 1 + y.left.right.numRight
+                    + y.left.right.numLeft;
+            y.left.numRight = 3 + y.right.numRight
+                    + y.right.numLeft
+                    + y.left.right.numRight + y.left.right.numLeft;
+        }
+
+    }// end rightRotateFixup(RedBlackNode y)
+
+    public void insert(T key) {
+        insert(new RedBlackNode<T>(key));
+    }
+
+    // @param: z, the node to be inserted into the Tree rooted at root
+    // Inserts z into the appropriate position in the RedBlackTree while
+    // updating numLeft and numRight values.
+    private void insert(RedBlackNode<T> z) {
+
+        // Create a reference to root & initialize a node to nil
+        RedBlackNode<T> y = nil;
+        RedBlackNode<T> x = root;
+
+        // While we haven't reached a the end of the tree keep
+        // tryint to figure out where z should go
+        while (!isNil(x)) {
+            y = x;
+
+            // if z.key is < than the current key, go left
+            if (z.key.compareTo(x.key) < 0) {
+
+                // Update X.numLeft as z is < than X
+                x.numLeft++;
+                x = x.left;
+            } // else z.key >= X.key so go right.
+            else {
+
+                // Update X.numGreater as z is => X
+                x.numRight++;
+                x = x.right;
+            }
+        }
+        // y will hold z's parent
+        z.parent = y;
+
+        // Depending on the value of y.key, put z as the left or
+        // right child of y
+        if (isNil(y)) {
+            root = z;
+        } else if (z.key.compareTo(y.key) < 0) {
+            y.left = z;
+        } else {
+            y.right = z;
+        }
+
+        // Initialize z's children to nil and z's color to red
+        z.left = nil;
+        z.right = nil;
+        z.color = RedBlackNode.RED;
+
+        // Call insertFixup(z)
+        insertFixup(z);
+
+    }// end insert(RedBlackNode z)
+
+    // @param: z, the node which was inserted and may have caused a violation
+    // of the RedBlackTree properties
+    // Fixes up the violation of the RedBlackTree properties that may have
+    // been caused during insert(z)
+    private void insertFixup(RedBlackNode<T> z) {
+
+        RedBlackNode<T> y = nil;
+        // While there is a violation of the RedBlackTree properties..
+        while (z.parent.color == RedBlackNode.RED) {
+
+            // If z's parent is the the left child of it's parent.
+            if (z.parent == z.parent.parent.left) {
+
+                // Initialize y to z 's cousin
+                y = z.parent.parent.right;
+
+                // Case 1: if y is red...recolor
+                if (y.color == RedBlackNode.RED) {
+                    z.parent.color = RedBlackNode.BLACK;
+                    y.color = RedBlackNode.BLACK;
+                    z.parent.parent.color = RedBlackNode.RED;
+                    z = z.parent.parent;
+                } // Case 2: if y is black & z is a right child
+                else if (z == z.parent.right) {
+
+                    // leftRotaet around z's parent
+                    z = z.parent;
+                    leftRotate(z);
+                } // Case 3: else y is black & z is a left child
+                else {
+                    // recolor and rotate round z's grandpa
+                    z.parent.color = RedBlackNode.BLACK;
+                    z.parent.parent.color = RedBlackNode.RED;
+                    rightRotate(z.parent.parent);
+                }
+            } // If z's parent is the right child of it's parent.
+            else {
+
+                // Initialize y to z's cousin
+                y = z.parent.parent.left;
+
+                // Case 1: if y is red...recolor
+                if (y.color == RedBlackNode.RED) {
+                    z.parent.color = RedBlackNode.BLACK;
+                    y.color = RedBlackNode.BLACK;
+                    z.parent.parent.color = RedBlackNode.RED;
+                    z = z.parent.parent;
+                } // Case 2: if y is black and z is a left child
+                else if (z == z.parent.left) {
+                    // rightRotate around z's parent
+                    z = z.parent;
+                    rightRotate(z);
+                } // Case 3: if y  is black and z is a right child
+                else {
+                    // recolor and rotate around z's grandpa
+                    z.parent.color = RedBlackNode.BLACK;
+                    z.parent.parent.color = RedBlackNode.RED;
+                    leftRotate(z.parent.parent);
+                }
+            }
+        }
+        // Color root black at all times
+        root.color = RedBlackNode.BLACK;
+
+    }// end insertFixup(RedBlackNode z)
+
+    // @param: node, a RedBlackNode
+    // @param: node, the node with the smallest key rooted at node
+    public RedBlackNode<T> treeMinimum(RedBlackNode<T> node) {
+
+        // while there is a smaller key, keep going left
+        while (!isNil(node.left)) {
+            node = node.left;
+        }
+        return node;
+    }// end treeMinimum(RedBlackNode node)
+
+    // @param: X, a RedBlackNode whose successor we must find
+    // @return: return's the node the with the next largest key
+    // from X.key
+    public RedBlackNode<T> treeSuccessor(RedBlackNode<T> x) {
+
+        // if X.left is not nil, call treeMinimum(X.right) and
+        // return it's value
+        if (!isNil(x.left)) {
+            return treeMinimum(x.right);
+        }
+
+        RedBlackNode<T> y = x.parent;
+
+        // while X is it's parent's right child...
+        while (!isNil(y) && x == y.right) {
+            // Keep moving up in the tree
+            x = y;
+            y = y.parent;
+        }
+        // Return successor
+        return y;
+    }// end treeMinimum(RedBlackNode X)
+
+    // @param: z, the RedBlackNode which is to be removed from the the tree
+    // Remove's z from the RedBlackTree rooted at root
+    public void remove(RedBlackNode<T> v) {
+
+        RedBlackNode<T> z = search(v.key);
+
+        // Declare variables
+        RedBlackNode<T> x = nil;
+        RedBlackNode<T> y = nil;
+
+        // if either one of z's children is nil, then we must remove z
+        if (isNil(z.left) || isNil(z.right)) {
+            y = z;
+        } // else we must remove the successor of z
+        else {
+            y = treeSuccessor(z);
+        }
+
+        // Let X be the left or right child of y (y can only have one child)
+        if (!isNil(y.left)) {
+            x = y.left;
+        } else {
+            x = y.right;
+        }
+
+        // link X's parent to y's parent
+        x.parent = y.parent;
+
+        // If y's parent is nil, then X is the root
+        if (isNil(y.parent)) {
+            root = x;
+        } // else if y is a left child, set X to be y's left sibling
+        else if (!isNil(y.parent.left) && y.parent.left == y) {
+            y.parent.left = x;
+        } // else if y is a right child, set X to be y's right sibling
+        else if (!isNil(y.parent.right) && y.parent.right == y) {
+            y.parent.right = x;
+        }
+
+        // if y != z, trasfer y's satellite data into z.
+        if (y != z) {
+            z.key = y.key;
+        }
+
+        // Update the numLeft and numRight numbers which might need
+        // updating due to the deletion of z.key.
+        fixNodeData(x, y);
+
+        // If y's color is black, it is a violation of the
+        // RedBlackTree properties so call removeFixup()
+        if (y.color == RedBlackNode.BLACK) {
+            removeFixup(x);
+        }
+    }// end remove(RedBlackNode z)
+
+    // @param: y, the RedBlackNode which was actually deleted from the tree
+    // @param: key, the value of the key that used to be in y
+    private void fixNodeData(RedBlackNode<T> x, RedBlackNode<T> y) {
+
+        // Initialize two variables which will help us traverse the tree
+        RedBlackNode<T> current = nil;
+        RedBlackNode<T> track = nil;
+
+        // if X is nil, then we will start updating at y.parent
+        // Set track to y, y.parent's child
+        if (isNil(x)) {
+            current = y.parent;
+            track = y;
+        } // if X is not nil, then we start updating at X.parent
+        // Set track to X, X.parent's child
+        else {
+            current = x.parent;
+            track = x;
+        }
+
+        // while we haven't reached the root
+        while (!isNil(current)) {
+            // if the node we deleted has a different key than
+            // the current node
+            if (y.key != current.key) {
+
+                // if the node we deleted is greater than
+                // current.key then decrement current.numRight
+                if (y.key.compareTo(current.key) > 0) {
+                    current.numRight--;
+                }
+
+                // if the node we deleted is less than
+                // current.key thendecrement current.numLeft
+                if (y.key.compareTo(current.key) < 0) {
+                    current.numLeft--;
+                }
+            } // if the node we deleted has the same key as the
+            // current node we are checking
+            else {
+                // the cases where the current node has any nil
+                // children and update appropriately
+                if (isNil(current.left)) {
+                    current.numLeft--;
+                } else if (isNil(current.right)) {
+                    current.numRight--;
+                } // the cases where current has two children and
+                // we must determine whether track is it's left
+                // or right child and update appropriately
+                else if (track == current.right) {
+                    current.numRight--;
+                } else if (track == current.left) {
+                    current.numLeft--;
+                }
+            }
+
+            // update track and current
+            track = current;
+            current = current.parent;
+
+        }
+
+    }//end fixNodeData()
+
+    // @param: X, the child of the deleted node from remove(RedBlackNode v)
+    // Restores the Red Black properties that may have been violated during
+    // the removal of a node in remove(RedBlackNode v)
+    private void removeFixup(RedBlackNode<T> x) {
+
+        RedBlackNode<T> w;
+
+        // While we haven't fixed the tree completely...
+        while (x != root && x.color == RedBlackNode.BLACK) {
+
+            // if X is it's parent's left child
+            if (x == x.parent.left) {
+
+                // set w = X's sibling
+                w = x.parent.right;
+
+                // Case 1, w's color is red.
+                if (w.color == RedBlackNode.RED) {
+                    w.color = RedBlackNode.BLACK;
+                    x.parent.color = RedBlackNode.RED;
+                    leftRotate(x.parent);
+                    w = x.parent.right;
+                }
+
+                // Case 2, both of w's children are black
+                if (w.left.color == RedBlackNode.BLACK
+                        && w.right.color == RedBlackNode.BLACK) {
+                    w.color = RedBlackNode.RED;
+                    x = x.parent;
+                } // Case 3 / Case 4
+                else {
+                    // Case 3, w's right child is black
+                    if (w.right.color == RedBlackNode.BLACK) {
+                        w.left.color = RedBlackNode.BLACK;
+                        w.color = RedBlackNode.RED;
+                        rightRotate(w);
+                        w = x.parent.right;
+                    }
+                    // Case 4, w = black, w.right = red
+                    w.color = x.parent.color;
+                    x.parent.color = RedBlackNode.BLACK;
+                    w.right.color = RedBlackNode.BLACK;
+                    leftRotate(x.parent);
+                    x = root;
+                }
+            } // if X is it's parent's right child
+            else {
+
+                // set w to X's sibling
+                w = x.parent.left;
+
+                // Case 1, w's color is red
+                if (w.color == RedBlackNode.RED) {
+                    w.color = RedBlackNode.BLACK;
+                    x.parent.color = RedBlackNode.RED;
+                    rightRotate(x.parent);
+                    w = x.parent.left;
+                }
+
+                // Case 2, both of w's children are black
+                if (w.right.color == RedBlackNode.BLACK
+                        && w.left.color == RedBlackNode.BLACK) {
+                    w.color = RedBlackNode.RED;
+                    x = x.parent;
+                } // Case 3 / Case 4
+                else {
+                    // Case 3, w's left child is black
+                    if (w.left.color == RedBlackNode.BLACK) {
+                        w.right.color = RedBlackNode.BLACK;
+                        w.color = RedBlackNode.RED;
+                        leftRotate(w);
+                        w = x.parent.left;
+                    }
+
+                    // Case 4, w = black, and w.left = red
+                    w.color = x.parent.color;
+                    x.parent.color = RedBlackNode.BLACK;
+                    w.left.color = RedBlackNode.BLACK;
+                    rightRotate(x.parent);
+                    x = root;
+                }
+            }
+        }// end while
+
+        // set X to black to ensure there is no violation of
+        // RedBlack tree Properties
+        x.color = RedBlackNode.BLACK;
+    }// end removeFixup(RedBlackNode X)
+
+    // @param: key, the key whose node we want to search for
+    // @return: returns a node with the key, key, if not found, returns null
+    // Searches for a node with key k and returns the first such node, if no
+    // such node is found returns null
+    public RedBlackNode<T> search(T key) {
+
+        // Initialize a pointer to the root to traverse the tree
+        RedBlackNode<T> current = root;
+
+        // While we haven't reached the end of the tree
+        while (!isNil(current)) {
+
+            // If we have found a node with a key equal to key
+            if (current.key.equals(key)) // return that node and exit search(int)
+            {
+                return current;
+            } // go left or right based on value of current and key
+            else if (current.key.compareTo(key) < 0) {
+                current = current.right;
+            } // go left or right based on value of current and key
+            else {
+                current = current.left;
+            }
+        }
+
+        // we have not found a node whose key is "key"
+        return null;
+
+    }// end search(int key)
+
+    // @param: key, any Comparable object
+    // @return: return's the number of elements greater than key
+    public int numGreater(T key) {
+
+        // Call findNumGreater(root, key) which will return the number
+        // of nodes whose key is greater than key
+        return findNumGreater(root, key);
+
+    }// end numGreater(int key)
+
+    // @param: key, any Comparable object
+    // @return: return's teh number of elements smaller than key
+    public int numSmaller(T key) {
+
+        // Call findNumSmaller(root,key) which will return
+        // the number of nodes whose key is greater than key
+        return findNumSmaller(root, key);
+
+    }// end numSmaller(int key)
+
+    // @param: node, the root of the tree, the key who we must
+    // compare other node key's to.
+    // @return: the number of nodes greater than key.
+    public int findNumGreater(RedBlackNode<T> node, T key) {
+
+        // Base Case: if node is nil, return 0
+        if (isNil(node)) {
+            return 0;
+        } // If key is less than node.key, all elements right of node are
+        // greater than key, add this to our total and look to the left
+        else if (key.compareTo(node.key) < 0) {
+            return 1 + node.numRight + findNumGreater(node.left, key);
+        } // If key is greater than node.key, then look to the right as
+        // all elements to the left of node are smaller than key
+        else {
+            return findNumGreater(node.right, key);
+        }
+
+    }// end findNumGreater(RedBlackNode, int key)
+
+    /**
+     * Returns sorted list of keys greater than key. Size of list will not
+     * exceed maxReturned
+     *
+     * @param key         Key to search for
+     * @param maxReturned Maximum number of results to return
+     * @return List of keys greater than key. List may not exceed
+     * maxReturned
+     */
+    public List<T> getGreaterThan(T key, Integer maxReturned) {
+        List<T> list = new ArrayList<T>();
+        getGreaterThan(root, key, list);
+        return list.subList(0, Math.min(maxReturned, list.size()));
+    }
+
+    private void getGreaterThan(RedBlackNode<T> node, T key,
+                                List<T> list) {
+        if (isNil(node)) {
+            return;
+        } else if (node.key.compareTo(key) > 0) {
+            getGreaterThan(node.left, key, list);
+            list.add(node.key);
+            getGreaterThan(node.right, key, list);
+        } else {
+            getGreaterThan(node.right, key, list);
+        }
+    }
+
+    // @param: node, the root of the tree, the key who we must compare other
+    // node key's to.
+    // @return: the number of nodes smaller than key.
+    public int findNumSmaller(RedBlackNode<T> node, T key) {
+
+        // Base Case: if node is nil, return 0
+        if (isNil(node)) {
+            return 0;
+        } // If key is less than node.key, look to the left as all
+        // elements on the right of node are greater than key
+        else if (key.compareTo(node.key) <= 0) {
+            return findNumSmaller(node.left, key);
+        } // If key is larger than node.key, all elements to the left of
+        // node are smaller than key, add this to our total and look
+        // to the right.
+        else {
+            return 1 + node.numLeft + findNumSmaller(node.right, key);
+        }
+
+    }// end findNumSmaller(RedBlackNode nod, int key)
+
+    // @param: node, the RedBlackNode we must check to see whether it's nil
+    // @return: return's true of node is nil and false otherwise
+    private boolean isNil(RedBlackNode node) {
+
+        // return appropriate value
+        return node == nil;
+
+    }// end isNil(RedBlackNode node)
+
+    // @return: return's the size of the tree
+    // Return's the # of nodes including the root which the RedBlackTree
+    // rooted at root has.
+    public int size() {
+        // Return the number of nodes to the root's left + the number of
+        // nodes on the root's right + the root itself.
+        return root.numLeft + root.numRight + 1;
+    }// end size()
+
+}
