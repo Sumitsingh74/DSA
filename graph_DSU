@@ -1,0 +1,137 @@
+    static class Mine {
+        int x, y;
+        int timer;
+        int id;
+        public Mine(int x, int y, int timer, int id) {
+            this.x = x;
+            this.y = y;
+            this.timer = timer;
+            this.id = id;
+        }
+        @Override
+        public String toString() {
+            return "(" + x + "," + y + ")";
+        }
+    }
+ 
+    static class Graph {
+        Node[] nodes;
+        class Node {
+            HashSet<Node> neighbors = new HashSet<>();
+            int connectedComponent = -1;
+            int id = -1;
+            public Node(int id) {
+                this.id = id;
+            }
+ 
+        }
+        public Graph(int size) {
+            nodes = new Node[size];
+            for(int i = 0;i<size;i++) {
+                nodes[i] = new Node(i);
+            }
+        }
+        public void addEdge(int a, int b) {
+            nodes[a].neighbors.add(nodes[b]);
+            nodes[b].neighbors.add(nodes[a]);
+        }
+        public void findConnectedComponents() {
+            int cnt = 0;
+            for(Node node : nodes) {
+                if(node.connectedComponent != -1) continue;
+                node.connectedComponent = cnt++;
+                findConnectedComponentsDFS(node);
+            }
+        }
+        public void findConnectedComponentsDFS(Node node) {
+            for(Node neighbor : node.neighbors) {
+                if(neighbor.connectedComponent == -1) {
+                    neighbor.connectedComponent = node.connectedComponent;
+                    findConnectedComponentsDFS(neighbor);
+                }
+            }
+        }
+        public ArrayList<Integer>[] getConnectedComponentsAsList() {
+            int CCCount = -1;
+            for(Node node : nodes) {
+                CCCount = Math.max(CCCount, node.connectedComponent+1);
+            }
+            ArrayList<Integer>[] CCs = new ArrayList[CCCount];
+            for(int i=0; i<CCCount; i++) {
+                CCs[i] = new ArrayList<>();
+            }
+            for(Node node : nodes) {
+                CCs[node.connectedComponent].add(node.id);
+            }
+            return CCs;
+        }
+    }
+ 
+ 
+    public static void main(String[] args) throws Exception{
+//      sieve_of_erantothenes();
+//      Reader s = new Reader();
+//      precomp(MoD);
+        int Te = 1;
+        Te=s.nextInt();
+        superOuter:
+        while(Te-- >0){
+            int n = s.nextInt();
+            int k = s.nextInt();
+            Graph graph = new Graph(n);
+            HashMap<Integer, ArrayList<Mine>> mapx = new HashMap<>();
+            HashMap<Integer, ArrayList<Mine>> mapy = new HashMap<>();
+            Mine[] mines = new Mine[n];
+            for(int i=0; i<n; i++) {
+                Mine mine = new Mine(s.nextInt(), s.nextInt(), s.nextInt(), i);
+                if(!mapx.containsKey(mine.x)) mapx.put(mine.x, new ArrayList<>());
+                mapx.get(mine.x).add(mine);
+                if(!mapy.containsKey(mine.y)) mapy.put(mine.y, new ArrayList<>());
+                mapy.get(mine.y).add(mine);
+                mines[mine.id] = mine;
+            }
+            for(ArrayList<Mine> list : mapx.values()) {
+                Collections.sort(list, (a,b) -> a.y - b.y);
+                for(int i=1; i<list.size(); i++) {
+                    if(list.get(i).y - list.get(i-1).y <= k) graph.addEdge(list.get(i-1).id, list.get(i).id);
+                }
+            }
+            for(ArrayList<Mine> list : mapy.values()) {
+                Collections.sort(list, (a,b) -> a.x - b.x);
+                for(int i=1; i<list.size(); i++) {
+                    if(list.get(i).x - list.get(i-1).x <= k) {
+                        graph.addEdge(list.get(i-1).id, list.get(i).id);
+                    }
+                }
+            }
+ 
+            graph.findConnectedComponents();
+            ArrayList<Integer>[] CCs = graph.getConnectedComponentsAsList();
+            int[] CCtimer = new int[CCs.length];
+            for(int i=0; i<CCs.length; i++) {
+                int min = Integer.MAX_VALUE;
+                for(int mineId : CCs[i]) {
+                    min = Math.min(min, mines[mineId].timer);
+                }
+                CCtimer[i] = min;
+            }
+            Arrays.sort(CCtimer);
+            int time = -1;
+            for(int i=CCtimer.length-1; i>=0; i--) {
+                time++;
+                if(i==0 || time >= CCtimer[i-1]) break;
+            }
+ 
+            System.out.println(time);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            out.flush();
+        }
+        out.close();
+    }
+}
